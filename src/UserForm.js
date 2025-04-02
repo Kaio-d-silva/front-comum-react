@@ -8,7 +8,10 @@ export function UserForm({ isEditing = false }) {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    useEffect(async () => {
+    useEffect( () => {
+        
+        async function fetchData() {
+            
         if (isEditing) {
             try {
                 const response = await fetch(`http://localhost:3000/users/${id}`, {
@@ -30,6 +33,8 @@ export function UserForm({ isEditing = false }) {
                 console.error("Erro na requisição", error);
             }
         }
+        }
+        fetchData()
     }, [id, isEditing]);
 
     const handleSubmit = async (e) => {
